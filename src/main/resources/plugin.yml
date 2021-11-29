@@ -1,0 +1,12 @@
+name: Jobs
+version: '${project.version}'
+main: me.n137.Jobs.Jobs
+api-version: 1.17
+description: Get money for killing mobs
+depend: [Vault]
+
+commands:
+  jobs:
+    description: Open the jobs menu
+  jobsadmin:
+    description: Open the jobs admin menu

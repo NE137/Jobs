@@ -1,0 +1,171 @@
+config:
+  randomizeIncome: true
+  randomizeEarning: true
+  maxJobs: 1
+money:
+  fisherman:
+    COD: 10.0
+    TROPICAL_FISH: 10.0
+    PUFFERFISH: 10.0
+    SALMON: 10.0
+  blacksmith:
+    IRON_HELMET: 10.0
+    IRON_CHESTPLATE: 10.0
+    IRON_LEGGINGS: 10.0
+    IRON_BOOTS: 10.0
+    GOLDEN_HELMET: 10.0
+    GOLDEN_CHESTPLATE: 10.0
+    GOLDEN_LEGGINGS: 10.0
+    GOLDEN_BOOTS: 10.0
+    DIAMOND_HELMET: 10.0
+    DIAMOND_CHESTPLATE: 10.0
+    DIAMOND_LEGGINGS: 10.0
+    DIAMOND_BOOTS: 10.0
+    NETHERITE_HELMET: 10.0
+    NETHERITE_CHESTPLATE: 10.0
+    NETHERITE_LEGGINGS: 10.0
+    NETHERITE_BOOTS: 10.0
+  hunter:
+    AXOLOTL: 10.0
+    BAT: 10.0
+    BEE: 10.0
+    BLAZE: 10.0
+    CAT: 10.0
+    CAVE_SPIDER: 10.0
+    CHICKEN: 10.0
+    COD: 10.0
+    COW: 10.0
+    CREEPER: 10.0
+    DOLPHIN: 10.0
+    DONKEY: 10.0
+    DROWNED: 10.0
+    ELDER_GUARDIAN: 10.0
+    ENDER_DRAGON: 10.0
+    ENDERMAN: 10.0
+    ENDERMITE: 10.0
+    EVOKER: 10.0
+    FOX: 10.0
+    GHAST: 10.0
+    GIANT: 10.0
+    GLOW_SQUID: 10.0
+    GOAT: 10.0
+    GUARDIAN: 10.0
+    HOGLIN: 10.0
+    HORSE: 10.0
+    HUSK: 10.0
+    ILLUSIONER: 10.0
+    IRON_GOLEM: 10.0
+    LLAMA: 10.0
+    MAGMA_CUBE: 10.0
+    MULE: 10.0
+    MUSHROOM_COW: 10.0
+    OCELOT: 10.0
+    PANDA: 10.0
+    PARROT: 10.0
+    PHANTOM: 10.0
+    PIG: 10.0
+    PIGLIN: 10.0
+    PIGLIN_BRUTE: 10.0
+    PILLAGER: 10.0
+    PLAYER: 10.0
+    POLAR_BEAR: 10.0
+    PUFFERFISH: 10.0
+    RABBIT: 10.0
+    RAVAGER: 10.0
+    SALMON: 10.0
+    SHEEP: 10.0
+    SHULKER: 10.0
+    SILVERFISH: 10.0
+    SKELETON: 10.0
+    SKELETON_HORSE: 10.0
+    SLIME: 10.0
+    SNOWMAN: 10.0
+    SPIDER: 10.0
+    SQUID: 10.0
+    STRAY: 10.0
+    STRIDER: 10.0
+    TRADER_LLAMA: 10.0
+    TROPICAL_FISH: 10.0
+    TURTLE: 10.0
+    VEX: 10.0
+    VILLAGER: 10.0
+    VINDICATOR: 10.0
+    WANDERING_TRADER: 10.0
+    WITCH: 10.0
+    WITHER: 10.0
+    WITHER_SKELETON: 10.0
+    WOLF: 10.0
+    ZOGLIN: 10.0
+    ZOMBIE: 10.0
+    ZOMBIE_HORSE: 10.0
+    ZOMBIE_VILLAGER: 10.0
+    ZOMBIFIED_PIGLIN: 10.0
+  miner:
+    COAL_ORE: 10.0
+    IRON_ORE: 10.0
+    GOLD_ORE: 10.0
+    LAPIS_ORE: 10.0
+    REDSTONE_ORE: 10.0
+    COPPER_ORE: 10.0
+    DIAMOND_ORE: 10.0
+    EMERALD_ORE: 10.0
+    NETHER_GOLD_ORE: 10.0
+    NETHER_QUARTZ_ORE: 10.0
+    ANCIENT_DEBRIS: 10.0
+    DEEPSLATE_COAL_ORE: 10.0
+    DEEPSLATE_COPPER_ORE: 10.0
+    DEEPSLATE_DIAMOND_ORE: 10.0
+    DEEPSLATE_EMERALD_ORE: 10.0
+    DEEPSLATE_GOLD_ORE: 10.0
+    DEEPSLATE_IRON_ORE: 10.0
+    DEEPSLATE_LAPIS_ORE: 10.0
+    DEEPSLATE_REDSTONE_ORE: 10.0
+  lumberjack:
+    ACACIA_LOG: 10.0
+    BIRCH_LOG: 10.0
+    DARK_OAK_LOG: 10.0
+    JUNGLE_LOG: 10.0
+    OAK_LOG: 10.0
+    SPRUCE_LOG: 10.0
+    WARPED_STEM: 10.0
+    CRIMSON_STEM: 10.0
+
+messages:
+  actionbar:
+    fish: "&fYou have caught a &d&l&o%fish% &fand received &6&l&o%money%$"
+    blacksmith: "&fYou have crafted a &d&l&o%item% &fand received &6&l&o%money%$"
+    hunter: "&fYou have killed a &d&l&o%mob%&f and received &6&l&o%money%"
+    miner: "&fYou have mined a &d&l&o%block%&f and received &6&l&o%money%"
+    lumberjack: "&fYou have mined a &d&l&o%block%&f and received &6&l&o%money%"
+  menuitem:
+    jobs:
+      fisherman: "&bFisherman"
+      blacksmith: "&cBlacksmith"
+      hunter: "&4Hunter"
+      miner: "&eMiner"
+      lumberjack: "&aLumberjack"
+    admin:
+      hire: "&6Hire a player"
+      fire: "&cFire a player"
+      list: "&aShow the jobs of a player"
+      settings: "&eSettings"
+      max_jobs: "&7Change Maximum Jobs"
+      toggle_earnings: "&aToggle Randomized Earnings"
+      toggle_income: "&cToggle Randomized Earnings"
+      toggle_verbose: "&eToggle Verbose Mode"
+      reload_configs: "&dReload Configuration"
+      return: "&cReturn"
+  chat:
+    joined_job: "&aYou have been hired as a &6%job%"
+    left_job: "&cYou have quit your job as a &6%job%"
+    hired_job: "&aYou have been hired as a &6%job%"
+    fired_job: "&cYou have fired from your job as a &6%job%"
+    admin_hired_success: "&aYou have hired %player% into the position of %job%"
+    admin_fired_success: "&cYou have fired %player% from the position of %job%"
+    not_employed: "&cError, %player% is not a %job%"
+    no_permission: "&cYou do not have permissions to use this command"
+    max_jobs_reached: "&cYou can only join %amount% jobs. Please leave a job before joining a new one."
+    max_jobs_reached_hired: "&cThe person you were trying to hire into %job% is currently part of too many jobs. Fire them first."
+  gui:
+    job_menu_title: "&c&lChoose a job!"
+    job_admin_main_menu_title: "&6&lJobs Admin Panel"
