@@ -10,3 +10,5 @@ commands:
     description: Open the jobs menu
   jobsadmin:
     description: Open the jobs admin menu
+  quitjobs:
+    description: Leave all of your jobs

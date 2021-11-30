@@ -11,9 +11,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
@@ -91,7 +93,30 @@ public class Events implements Listener {
         }
     }
 
-    // Miner & Lumberjack
+    @EventHandler
+    public void onEnchant(EnchantItemEvent event) {
+        if (event.isCancelled()) return;
+        if (event.getEnchanter() == null) return;
+        Player enchanter = event.getEnchanter();
+        ItemStack enchantedItem = event.getItem();
+
+        if (this.plugin.getDataManager().isPlayerEmployedInJob(enchanter, "enchanter")) {
+            if (this.plugin.getEnchanterList().containsKey(enchantedItem.getType().name())) {
+                money = this.plugin.getEnchanterList().get(enchantedItem.getType().name());
+                money = this.plugin.modifyIncome(money);
+                if (this.plugin.processEarnings()) Jobs.getEcon().depositPlayer(enchanter, money);
+                if (this.plugin.processEarnings()) enchanter.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                        Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("messages.actionbar.enchanter"))
+                                .replace("%item%", enchantedItem.getType().name())
+                                .replace("%money%", String.valueOf(money))
+                                .replace("&", "§"))));
+            }
+        }
+    }
+
+
+
+    // Miner & Lumberjack & Farmer & Archeologist
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
 
@@ -124,6 +149,40 @@ public class Events implements Listener {
                 if (this.plugin.processEarnings()) Jobs.getEcon().depositPlayer(miner, money);
                 if (this.plugin.processEarnings()) miner.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
                         Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("messages.actionbar.lumberjack"))
+                                .replace("%block%", blockType.name())
+                                .replace("%money%", String.valueOf(money))
+                                .replace("&", "§"))));
+
+                // Lumberjack
+
+            }
+
+        }
+
+        if (this.plugin.getDataManager().isPlayerEmployedInJob(event.getPlayer(), "archeologist")) {
+            if (this.plugin.getArcheologistList().containsKey(blockType.name())) {
+                money = this.plugin.getArcheologistList().get(blockType.name());
+                money = this.plugin.modifyIncome(money);
+                if (this.plugin.processEarnings()) Jobs.getEcon().depositPlayer(miner, money);
+                if (this.plugin.processEarnings()) miner.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                        Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("messages.actionbar.archeologist"))
+                                .replace("%block%", blockType.name())
+                                .replace("%money%", String.valueOf(money))
+                                .replace("&", "§"))));
+
+                // Lumberjack
+
+            }
+
+        }
+
+        if (this.plugin.getDataManager().isPlayerEmployedInJob(event.getPlayer(), "farmer")) {
+            if (this.plugin.getFarmerList().containsKey(blockType.name())) {
+                money = this.plugin.getFarmerList().get(blockType.name());
+                money = this.plugin.modifyIncome(money);
+                if (this.plugin.processEarnings()) Jobs.getEcon().depositPlayer(miner, money);
+                if (this.plugin.processEarnings()) miner.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                        Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("messages.actionbar.farmer"))
                                 .replace("%block%", blockType.name())
                                 .replace("%money%", String.valueOf(money))
                                 .replace("&", "§"))));

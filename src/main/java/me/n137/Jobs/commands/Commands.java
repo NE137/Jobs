@@ -8,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 
+import java.util.List;
+
 
 public class Commands {
     private Jobs plugin;
@@ -37,13 +39,7 @@ public class Commands {
                     sender.sendMessage("§cThis command cannot be ran from console");
                     return true;
                 }
-                if (sender.hasPermission("jobsadmin.hire") ||
-                    sender.hasPermission("jobsadmin.fire") ||
-                    sender.hasPermission("jobsadmin.list") ||
-                    sender.hasPermission("jobsadmin.listjobs") ||
-                    sender.hasPermission("jobsadmin.debug") ||
-                    sender.hasPermission("jobsadmin.savedata") ||
-                    sender.hasPermission("jobsadmin.listconfig")) {
+                if (sender.hasPermission("jobsadmin.admin")) {
 
                 if (args.length == 0) {
                     Player player = (Player) sender;
@@ -54,8 +50,24 @@ public class Commands {
                     sender.sendMessage(this.plugin.getConfig().getString("messages.chat.no_permission").replace("&", "§"));
                     return true;
                 }
-            }
-        return true;
+            } else if(cmd.getName().equalsIgnoreCase("quitjobs")) {
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage("§cThis command cannot be ran from console");
+                    return true;
+                }
+                List<String> jobList = Jobs.getPlugin().getJobList().get(((Player) sender).getUniqueId());
+                for (int i = 0; i < jobList.size(); i++) {
+
+                String job = jobList.get(i);
+                if (job == null) return true;
+                    Jobs.getPlugin().sendFiredMessage(((Player) sender), job);
+                    Jobs.getPlugin().getDataManager().firePlayerFromJob(((Player) sender), job);
+
+                }
+                return true;
+                }
+                return true;
+
         }
 
     public void sendAdminAboutInfo(CommandSender sender) {

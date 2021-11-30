@@ -60,6 +60,8 @@ public class SettingsMenu extends PaginatedMenu {
 
             case STRUCTURE_VOID:
                 Jobs.getPlugin().reloadConfig();
+                Jobs.getPlugin().clearHashmaps();
+                Jobs.getPlugin().populateHashmaps();
                 e.getWhoClicked().sendMessage("§aConfig reloaded.");
                 return;
             case BARRIER:

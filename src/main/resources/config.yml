@@ -129,7 +129,56 @@ money:
     SPRUCE_LOG: 10.0
     WARPED_STEM: 10.0
     CRIMSON_STEM: 10.0
-
+  enchanter:
+    BOOK: 10.0
+    IRON_HELMET: 10.0
+    IRON_CHESTPLATE: 10.0
+    IRON_LEGGINGS: 10.0
+    IRON_BOOTS: 10.0
+    IRON_AXE: 10.0
+    IRON_SHOVEL: 10.0
+    IRON_HOE: 10.0
+    IRON_PICKAXE: 10.0
+    IRON_SWORD: 10.0
+    GOLDEN_HELMET: 10.0
+    GOLDEN_CHESTPLATE: 10.0
+    GOLDEN_LEGGINGS: 10.0
+    GOLDEN_BOOTS: 10.0
+    GOLDEN_AXE: 10.0
+    GOLDEN_SHOVEL: 10.0
+    GOLDEN_HOE: 10.0
+    GOLDEN_PICKAXE: 10.0
+    GOLDEN_SWORD: 10.0
+    DIAMOND_HELMET: 10.0
+    DIAMOND_CHESTPLATE: 10.0
+    DIAMOND_LEGGINGS: 10.0
+    DIAMOND_BOOTS: 10.0
+    DIAMOND_AXE: 10.0
+    DIAMOND_SHOVEL: 10.0
+    DIAMOND_HOE: 10.0
+    DIAMOND_PICKAXE: 10.0
+    DIAMOND_SWORD: 10.0
+    NETHERITE_HELMET: 10.0
+    NETHERITE_CHESTPLATE: 10.0
+    NETHERITE_LEGGINGS: 10.0
+    NETHERITE_BOOTS: 10.0
+    NETHERITE_AXE: 10.0
+    NETHERITE_SHOVEL: 10.0
+    NETHERITE_HOE: 10.0
+    NETHERITE_PICKAXE: 10.0
+    NETHERITE_SWORD: 10.0
+    BOW: 10.0
+    CROSSBOW: 10.0
+    TRIDENT: 10.0
+  farmer:
+    CARROTS: 10.0
+    POTATOES: 10.0
+    WHEAT: 10.0
+    BEETROOTS: 10.0
+  archeologist:
+    SAND: 10.0
+    DIRT: 10.0
+    GRAVEL: 10.0
 messages:
   actionbar:
     fish: "&fYou have caught a &d&l&o%fish% &fand received &6&l&o%money%$"
@@ -137,6 +186,9 @@ messages:
     hunter: "&fYou have killed a &d&l&o%mob%&f and received &6&l&o%money%"
     miner: "&fYou have mined a &d&l&o%block%&f and received &6&l&o%money%"
     lumberjack: "&fYou have mined a &d&l&o%block%&f and received &6&l&o%money%"
+    enchanter: "&fYou have enchanted a &d&l&o%item%&f and received &6&l&o%money%"
+    farmer: "&fYou have farmed a &d&l&o%block%&f and received &6&l&o%block%"
+    archeologist: "&fYou have mined a &d&l&o%block%&f and received &6&l&o%money%"
   menuitem:
     jobs:
       fisherman: "&bFisherman"
@@ -144,6 +196,9 @@ messages:
       hunter: "&4Hunter"
       miner: "&eMiner"
       lumberjack: "&aLumberjack"
+      enchanter: "&dEnchanter"
+      farmer: "&2Farmer"
+      archeologist: "&6Archeologist"
     admin:
       hire: "&6Hire a player"
       fire: "&cFire a player"

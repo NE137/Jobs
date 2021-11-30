@@ -37,7 +37,6 @@ public class JobsAdminMainMenu extends Menu {
                 return;
             case BLAZE_POWDER:
                 new PlayerFireSelectorMenu(Jobs.getPlayerMenuUtility(player)).open();
-
                 return;
             case SPYGLASS:
                 new PlayerInspectMenu(Jobs.getPlayerMenuUtility(player)).open();

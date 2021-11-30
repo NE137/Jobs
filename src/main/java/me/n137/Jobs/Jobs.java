@@ -43,6 +43,9 @@ public final class Jobs extends JavaPlugin {
     private HashMap<String, Double> fishermanList = new HashMap<>();
     private HashMap<String, Double> minerList = new HashMap<>();
     private HashMap<String, Double> lumberjackList = new HashMap<>();
+    private HashMap<String, Double> enchanterList = new HashMap<>();
+    private HashMap<String, Double> farmerList = new HashMap<>();
+    private HashMap<String, Double> archeologistList = new HashMap<>();
 
    private HashMap<UUID, List<String>> jobList = new HashMap<>();
 
@@ -111,6 +114,31 @@ public final class Jobs extends JavaPlugin {
             lumberjackList.put(s, v);
         }
         this.getServer().getConsoleSender().sendMessage("Loaded Lumberjack Hashmap");
+        for (String s : getConfig().getConfigurationSection("money.enchanter").getKeys(false)) {
+            double v = getConfig().getDouble("money.enchanter."+s);
+            enchanterList.put(s, v);
+        }
+        this.getServer().getConsoleSender().sendMessage("Loaded Enchanter Hashmap");
+        for (String s : getConfig().getConfigurationSection("money.farmer").getKeys(false)) {
+            double v = getConfig().getDouble("money.farmer."+s);
+            farmerList.put(s, v);
+        }
+        this.getServer().getConsoleSender().sendMessage("Loaded Farmer Hashmap");
+        for (String s : getConfig().getConfigurationSection("money.archeologist").getKeys(false)) {
+            double v = getConfig().getDouble("money.archeologist."+s);
+            archeologistList.put(s, v);
+        }
+        this.getServer().getConsoleSender().sendMessage("Loaded Archeologist Hashmap");    }
+
+    public void clearHashmaps() {
+        fishermanList.clear();
+        blacksmithList.clear();
+        hunterList.clear();
+        minerList.clear();
+        lumberjackList.clear();
+        enchanterList.clear();
+        farmerList.clear();
+        archeologistList.clear();
     }
 
     private boolean setupEconomy() {
@@ -163,6 +191,19 @@ public final class Jobs extends JavaPlugin {
     public HashMap<String, Double> getLumberjackList() {
         return lumberjackList;
     }
+
+    public HashMap<String, Double> getEnchanterList() {
+        return enchanterList;
+    }
+
+    public HashMap<String, Double> getFarmerList() {
+        return farmerList;
+    }
+
+    public HashMap<String, Double> getArcheologistList() {
+        return archeologistList;
+    }
+
 
     public static HashMap<UUID, Boolean> getDebugUsers() { return debugUsers; }
 
