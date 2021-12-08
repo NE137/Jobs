@@ -8,8 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 
-import java.util.List;
-
 
 public class Commands {
     private Jobs plugin;
@@ -55,17 +53,11 @@ public class Commands {
                     sender.sendMessage("§cThis command cannot be ran from console");
                     return true;
                 }
-                List<String> jobList = Jobs.getPlugin().getJobList().get(((Player) sender).getUniqueId());
-                for (int i = 0; i < jobList.size(); i++) {
-
-                String job = jobList.get(i);
-                if (job == null) return true;
-                    Jobs.getPlugin().sendFiredMessage(((Player) sender), job);
-                    Jobs.getPlugin().getDataManager().firePlayerFromJob(((Player) sender), job);
-
-                }
+                Player player = (Player) sender;
+                Jobs.getPlugin().getDataManager().deleteUser(player);
+                sender.sendMessage(this.plugin.getConfig().getString("messages.chat.left_all_jobs").replace("&", "§"));
                 return true;
-                }
+            }
                 return true;
 
         }

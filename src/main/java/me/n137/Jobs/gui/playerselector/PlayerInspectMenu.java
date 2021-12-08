@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -89,6 +90,19 @@ public class PlayerInspectMenu extends PaginatedMenu {
                     playerItem.setItemMeta(skullMeta);
 
                     playerMeta.setDisplayName(ChatColor.RED + players.get(index).getDisplayName());
+
+
+                    if (Jobs.getPlugin().getJobList().containsKey(players.get(index).getUniqueId())) {
+                        ArrayList<String> jobList = new ArrayList<>();
+                        for (String jobs : Jobs.getPlugin().getJobList().get(players.get(index).getUniqueId())) {
+                            jobList.add("§7- "+jobs);
+                        }
+                        playerMeta.setLore(jobList);
+                    } else {
+                        playerMeta.setLore(Arrays.asList("§cNot employed"));
+                    }
+
+
                     playerMeta.getPersistentDataContainer().set(new NamespacedKey(Jobs.getPlugin(), "uuid"), PersistentDataType.STRING, players.get(index).getUniqueId().toString());
                     playerItem.setItemMeta(playerMeta);
 

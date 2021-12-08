@@ -8,8 +8,6 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import java.util.Arrays;
-
 public class JobSelectorForHireMenu extends Menu {
 
     public JobSelectorForHireMenu(PlayerMenuUtility playerMenuUtility) {
@@ -77,21 +75,27 @@ public class JobSelectorForHireMenu extends Menu {
                 hirePlayer(event.getWhoClicked(), player, "archeologist");
                 event.setCancelled(true);
                 event.getWhoClicked().closeInventory();
+                return;
+            case BRICKS:
+                hirePlayer(event.getWhoClicked(), player, "builder");
+                event.setCancelled(true);
+                event.getWhoClicked().closeInventory();
         }
 
     }
 
     @Override
     public void setMenuItems() {
-        inventory.setItem(0, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.TROPICAL_FISH, "messages.menuitem.jobs.fisherman", Arrays.asList("§r", "§e● §7As a fisherman, you get paid for catching fish.", "§r")));
-        inventory.setItem(1, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.ANVIL, "messages.menuitem.jobs.blacksmith", Arrays.asList("§r", "§e● §7As a blacksmith, you get paid for crafting armor.", "§r")));
-        inventory.setItem(2, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.GOLDEN_AXE, "messages.menuitem.jobs.lumberjack", Arrays.asList("§r", "§e● §7As a lumberjack, you get paid for cutting down trees.", "§r")));
-        inventory.setItem(3, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.CROSSBOW, "messages.menuitem.jobs.hunter", Arrays.asList("§r", "§e● §7As a hunter, you get paid for killing mobs.", "§r")));
-        inventory.setItem(4, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.IRON_PICKAXE, "messages.menuitem.jobs.miner", Arrays.asList("§r", "§e● §7As a miner, you get paid for mining ores.", "§r")));
-        inventory.setItem(5, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.ENCHANTING_TABLE, "messages.menuitem.jobs.enchanter", Arrays.asList("§r", "§e● §7As an enchanter, you get paid for enchanting items.", "§r")));
-        inventory.setItem(6, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.DIAMOND_HOE, "messages.menuitem.jobs.farmer", Arrays.asList("§r", "§e● §7As a farmer, you get paid for farming crops.", "§r")));
-        inventory.setItem(7, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.IRON_SHOVEL, "messages.menuitem.jobs.archeologist", Arrays.asList("§r", "§e● §7As an archeologist, you get paid for digging up stuff.", "§r")));
-   }
+        inventory.setItem(0, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.TROPICAL_FISH, "messages.menuitem.jobs.fisherman", "messages.menuitem.jobslore.fisherman"));
+        inventory.setItem(1, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.ANVIL, "messages.menuitem.jobs.blacksmith", "messages.menuitem.jobslore.blacksmith"));
+        inventory.setItem(2, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.GOLDEN_AXE, "messages.menuitem.jobs.lumberjack", "messages.menuitem.jobslore.lumberjack"));
+        inventory.setItem(3, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.CROSSBOW, "messages.menuitem.jobs.hunter", "messages.menuitem.jobslore.hunter"));
+        inventory.setItem(4, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.IRON_PICKAXE, "messages.menuitem.jobs.miner", "messages.menuitem.jobslore.miner"));
+        inventory.setItem(5, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.ENCHANTING_TABLE, "messages.menuitem.jobs.enchanter", "messages.menuitem.jobslore.enchanter"));
+        inventory.setItem(6, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.DIAMOND_HOE, "messages.menuitem.jobs.farmer", "messages.menuitem.jobslore.farmer"));
+        inventory.setItem(7, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.IRON_SHOVEL, "messages.menuitem.jobs.archeologist", "messages.menuitem.jobslore.archeologist"));
+        inventory.setItem(8, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.BRICKS, "messages.menuitem.jobs.builder", "messages.menuitem.jobslore.builder"));
+    }
 
     public void hirePlayer(HumanEntity admin, Player target, String job) {
         if (!(Jobs.getPlugin().getDataManager().isPlayerEmployedInJob(target, job))) {

@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuHandler {
@@ -19,13 +20,25 @@ public class MenuHandler {
         return itemMeta;
     }
 
-    public ItemStack createMenuItem(Material material, String configPathToItemName, List<String> itemLore) {
+    public ItemStack createMenuItem(Material material, String configPathToItemName, String lore) {
         ItemStack mat = new ItemStack(material);
         ItemMeta matMeta = mat.getItemMeta();
         assert matMeta != null;
         String matTitle = this.plugin.getConfig().getString(configPathToItemName).replace("&", "§");
         matMeta.setDisplayName(matTitle);
+        List<String> itemLore = Arrays.asList("§r", this.plugin.getConfig().getString(lore).replace("&", "§"), "§r");
         matMeta.setLore(itemLore);
+        matMeta = addPersistentDataContainerToItem(matMeta);
+        mat.setItemMeta(matMeta);
+        return mat;
+    }
+    public ItemStack createMenuItem(Material material, String configPathToItemName, List<String> lore) {
+        ItemStack mat = new ItemStack(material);
+        ItemMeta matMeta = mat.getItemMeta();
+        assert matMeta != null;
+        String matTitle = this.plugin.getConfig().getString(configPathToItemName).replace("&", "§");
+        matMeta.setDisplayName(matTitle);
+        matMeta.setLore(lore);
         matMeta = addPersistentDataContainerToItem(matMeta);
         mat.setItemMeta(matMeta);
         return mat;

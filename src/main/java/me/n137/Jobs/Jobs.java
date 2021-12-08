@@ -46,8 +46,9 @@ public final class Jobs extends JavaPlugin {
     private HashMap<String, Double> enchanterList = new HashMap<>();
     private HashMap<String, Double> farmerList = new HashMap<>();
     private HashMap<String, Double> archeologistList = new HashMap<>();
+    private HashMap<String, Double> builderList = new HashMap<>();
 
-   private HashMap<UUID, List<String>> jobList = new HashMap<>();
+    private HashMap<UUID, List<String>> jobList = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -128,7 +129,12 @@ public final class Jobs extends JavaPlugin {
             double v = getConfig().getDouble("money.archeologist."+s);
             archeologistList.put(s, v);
         }
-        this.getServer().getConsoleSender().sendMessage("Loaded Archeologist Hashmap");    }
+        this.getServer().getConsoleSender().sendMessage("Loaded Archeologist Hashmap");
+        for (String s : getConfig().getConfigurationSection("money.builder").getKeys(false)) {
+            double v = getConfig().getDouble("money.builder."+s);
+            builderList.put(s, v);
+        }
+            this.getServer().getConsoleSender().sendMessage("Loaded Builder Hashmap");    }
 
     public void clearHashmaps() {
         fishermanList.clear();
@@ -139,6 +145,7 @@ public final class Jobs extends JavaPlugin {
         enchanterList.clear();
         farmerList.clear();
         archeologistList.clear();
+        builderList.clear();
     }
 
     private boolean setupEconomy() {
@@ -204,6 +211,9 @@ public final class Jobs extends JavaPlugin {
         return archeologistList;
     }
 
+    public HashMap<String, Double> getBuilderList() {
+        return builderList;
+    }
 
     public static HashMap<UUID, Boolean> getDebugUsers() { return debugUsers; }
 
@@ -267,6 +277,14 @@ public final class Jobs extends JavaPlugin {
 
     public static Jobs getPlugin() {
         return plugin;
+    }
+
+    public static void sendDebug(String message) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (Jobs.getDebugUsers().containsKey(p.getUniqueId())) {
+                p.sendMessage("§e§l[Debug]: §f"+message);
+            }
+        }
     }
 
 }

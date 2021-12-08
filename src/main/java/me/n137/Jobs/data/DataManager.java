@@ -78,6 +78,7 @@ public class DataManager {
             List<String> currentJobs = this.plugin.getJobList().get(player.getUniqueId());
             if (currentJobs.contains(job)) return;
             currentJobs.add(job);
+
             this.plugin.getJobList().remove(player.getUniqueId());
             this.plugin.getJobList().put(player.getUniqueId(), currentJobs);
             this.plugin.sendEmploymentMessage(player, job.substring(0, 1).toUpperCase() + job.substring(1));
@@ -108,12 +109,28 @@ public class DataManager {
     }
 
     public void firePlayerFromJob(Player player, String job) {
-        if (!(isPlayerEmployedInJob(player, job))) return;
-        if (!(this.plugin.getJobList().containsKey(player.getUniqueId()))) return;
+        if (!(isPlayerEmployedInJob(player, job))) {
+            Jobs.sendDebug(player.getName() + " is not employed in " +job +" returning..");
+            return;
+        }
+        if (!(this.plugin.getJobList().containsKey(player.getUniqueId()))) {
+            Jobs.sendDebug(player.getName() + " is not in the JobList in " +job +" returning..");
+
+            return;
+        }
         if (this.plugin.getJobList().containsKey(player.getUniqueId())) {
+            Jobs.sendDebug(player + " is in joblist, attempting firing...");
             List<String> currentJobs = this.plugin.getJobList().get(player.getUniqueId());
+
+
+            for (String jobs : Jobs.getPlugin().getJobList().get(player.getUniqueId())) {
+                Jobs.sendDebug(player.getName() + " has the job " + jobs);
+            }
+
+
             if (!(currentJobs.contains(job))) return;
             currentJobs.remove(job);
+            Jobs.sendDebug("Removing " + player.getName() + " from " + job);
             this.plugin.getJobList().remove(player.getUniqueId());
             this.plugin.getJobList().put(player.getUniqueId(), currentJobs);
         }
@@ -121,5 +138,10 @@ public class DataManager {
     public List<String> listPlayerJobs(Player player) {
         if (!(this.plugin.getJobList().containsKey(player.getUniqueId()))) return Collections.singletonList("No jobs found");
         return this.plugin.getJobList().get(player.getUniqueId());
+    }
+
+    public void deleteUser(Player player) {
+        Jobs.sendDebug("Deleting all values from " + player.getName());
+        this.plugin.getJobList().remove(player.getUniqueId());
     }
 }

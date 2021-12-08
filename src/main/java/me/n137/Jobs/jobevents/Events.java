@@ -4,6 +4,7 @@ import me.n137.Jobs.Jobs;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -11,9 +12,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -115,6 +117,22 @@ public class Events implements Listener {
     }
 
 
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (event.isCancelled()) return;
+        Player builder = event.getPlayer();
+
+        if (this.plugin.getDataManager().isPlayerEmployedInJob(event.getPlayer(), "builder")) {
+            money = this.plugin.getBuilderList().get("DEFAULT");
+            money = this.plugin.modifyIncome(money);
+            if (this.plugin.processEarnings()) Jobs.getEcon().depositPlayer(builder, money);
+            if (this.plugin.processEarnings()) builder.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                    Objects.requireNonNull(Objects.requireNonNull(this.plugin.getConfig().getString("messages.actionbar.builder"))
+                            .replace("%money%", String.valueOf(money))
+                            .replace("&", "§"))));
+        }
+    }
+
 
     // Miner & Lumberjack & Farmer & Archeologist
     @EventHandler
@@ -178,6 +196,9 @@ public class Events implements Listener {
 
         if (this.plugin.getDataManager().isPlayerEmployedInJob(event.getPlayer(), "farmer")) {
             if (this.plugin.getFarmerList().containsKey(blockType.name())) {
+                Ageable ageable = (Ageable) event.getBlock().getBlockData();
+                if (ageable == null) return;
+                if (!(ageable.getAge() == ageable.getMaximumAge())) return;
                 money = this.plugin.getFarmerList().get(blockType.name());
                 money = this.plugin.modifyIncome(money);
                 if (this.plugin.processEarnings()) Jobs.getEcon().depositPlayer(miner, money);

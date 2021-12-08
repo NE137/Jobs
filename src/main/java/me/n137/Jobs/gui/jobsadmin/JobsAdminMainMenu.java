@@ -11,7 +11,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class JobsAdminMainMenu extends Menu {
@@ -48,9 +47,9 @@ public class JobsAdminMainMenu extends Menu {
 
     @Override
     public void setMenuItems() {
-        inventory.setItem(10, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.IRON_SWORD, "messages.menuitem.admin.hire", Arrays.asList("§r", "§e● §7Hire a player into a job.", "§r")));
-        inventory.setItem(12, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.BLAZE_POWDER, "messages.menuitem.admin.fire", Arrays.asList("§r", "§e● §7Fire a player from a job.", "§r")));
-        inventory.setItem(14, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.SPYGLASS, "messages.menuitem.admin.list", Arrays.asList("§r", "§e● §7Show a list of jobs a player has.", "§r")));
-        inventory.setItem(16, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.COMMAND_BLOCK, "messages.menuitem.admin.settings", Arrays.asList("§r", "§e● §7Configure details about the jobs.", "§r")));
+        inventory.setItem(10, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.IRON_SWORD, "messages.menuitem.admin.hire", "messages.menuitem.adminlore.hire"));
+        inventory.setItem(12, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.BLAZE_POWDER, "messages.menuitem.admin.fire", "messages.menuitem.adminlore.fire"));
+        inventory.setItem(14, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.SPYGLASS, "messages.menuitem.admin.list", "messages.menuitem.adminlore.list"));
+        inventory.setItem(16, Jobs.getPlugin().getMenuHandler().createMenuItem(Material.COMMAND_BLOCK, "messages.menuitem.admin.settings", "messages.menuitem.adminlore.settings"));
     }
     }
